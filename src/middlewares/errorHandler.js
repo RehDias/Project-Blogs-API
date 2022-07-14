@@ -1,6 +1,7 @@
 const statusErrors = {
-  NotFoundError: 400,
+  NotFoundError: 404,
   ValidationError: 400,
+  Unauthorized: 401,
 };
 
 const errorHandler = ({ name, message }, _req, res, _next) => {

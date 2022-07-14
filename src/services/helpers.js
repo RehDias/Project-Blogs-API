@@ -7,10 +7,10 @@ const validateJoiSchema = (schema) => async (data) => {
   return result;
 };
 
-const notFoundError = (message) => {
-  const e = new Error(message);
-  e.name = 'NotFoundError';
-  throw e;
+const throwError = (errName, message) => {
+  const err = new Error(message);
+  err.name = errName;
+  throw err;
 };
 
 const createToken = async ({ email }) => {
@@ -23,9 +23,9 @@ const readToken = async (token) => {
   return data;
 };
 
-module.exports = { 
+module.exports = {
   validateJoiSchema,
-  notFoundError,
+  throwError,
   createToken,
   readToken,
- };
+};

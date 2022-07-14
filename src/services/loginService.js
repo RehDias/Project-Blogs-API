@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const models = require('../database/models');
-const { validateJoiSchema, notFoundError } = require('./helpers');
+const { validateJoiSchema, throwError } = require('./helpers');
 
 const loginService = {
   validateLoginBody: validateJoiSchema(Joi.object({
@@ -10,9 +10,21 @@ const loginService = {
     'string.empty': 'Some required fields are missing',
   })),
 
+  async validateToken(unknown) {
+    const schema = Joi.string().required();
+    try {
+      const result = await schema.validateAsync(unknown);
+      const [, token] = result.split(' ');
+      return token;
+    } catch (error) {
+      throwError('Unauthorized', 'Expired or invalid token');
+    }
+  },
+
   async checkUserByEmail({ email }) {
-    const exist = await models.User.findOne({ where: { email } });
-    if (!exist) notFoundError('Invalid fields');
+    const user = await models.User.findOne({ where: { email } });
+    if (!user) throwError('ValidationError', 'Invalid fields');
+    return user;
   },
 };
 
