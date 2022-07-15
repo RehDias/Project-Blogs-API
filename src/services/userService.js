@@ -10,7 +10,7 @@ const userService = {
     image: Joi.string().max(255),
   })),
 
-  async checkExistsByEmail({ email }) {
+  async checkExistsByEmail(email) {
     const exist = await models.User.findOne({ where: { email } });
     return !!exist;
   },
@@ -21,6 +21,14 @@ const userService = {
     // const newUser = addUser.toJSON();
     // const { password, ...user } = newUser;
     // return user;
+  },
+
+  async list() {
+    const users = await models.User.findAll({
+      attributes: { exclude: ['password'] },
+      raw: true,
+    });
+    return users;
   },
 };
 

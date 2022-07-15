@@ -18,9 +18,14 @@ const createToken = async ({ email }) => {
   return token;
 };
 
-const readToken = async (token) => {
-  const { data } = jwt.verify(secret, token);
-  return data;
+const readToken = (token) => {
+  try {
+    const email = jwt.verify(token, secret);
+    return email;
+  } catch (error) {
+    if (!token || token === undefined) throwError('Unauthorized', 'Token not found');
+    throwError('Unauthorized', 'Expired or invalid token');
+  }
 };
 
 module.exports = {
