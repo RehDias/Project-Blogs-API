@@ -4,7 +4,7 @@ const { createToken } = require('../services/helpers');
 const userController = {
   async add(req, res) {
     const data = await userService.validateAddBody(req.body);
-    const userExist = await userService.checkExistsByEmail(data);
+    const userExist = await userService.checkExistsByEmail(data.email);
     if (userExist) return res.status(409).json({ message: 'User already registered' });
     await userService.add(data);
     const token = await createToken(data);
