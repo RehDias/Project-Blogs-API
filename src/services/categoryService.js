@@ -11,6 +11,11 @@ const categoryService = {
     const category = await models.Category.create(data, { raw: true });
     return category;
   },
+
+  async list() {
+    const categories = await models.Category.findAll({ raw: true });
+    return categories;
+  },
 };
 
 module.exports = categoryService;
