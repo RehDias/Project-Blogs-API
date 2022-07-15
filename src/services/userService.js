@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const models = require('../database/models');
-const { validateJoiSchema } = require('./helpers');
+const { validateJoiSchema, throwError } = require('./helpers');
 
 const userService = {
   validateAddBody: validateJoiSchema(Joi.object({
@@ -10,6 +10,10 @@ const userService = {
     image: Joi.string().max(255),
   })),
 
+  validateParamId: validateJoiSchema(Joi.object({
+    id: Joi.number().integer().positive().required(),
+  })),
+
   async checkExistsByEmail(email) {
     const exist = await models.User.findOne({ where: { email } });
     return !!exist;
@@ -17,10 +21,6 @@ const userService = {
 
   async add(data) {
     await models.User.create(data);
-    // const addUser = await models.User.create(data);
-    // const newUser = addUser.toJSON();
-    // const { password, ...user } = newUser;
-    // return user;
   },
 
   async list() {
@@ -29,6 +29,15 @@ const userService = {
       raw: true,
     });
     return users;
+  },
+
+  async getById(id) {
+    const user = await models.User.findByPk(id, {
+      attributes: { exclude: ['password'] },
+      raw: true,
+    });
+    if (!user) throwError('NotFoundError', 'User does not exist');
+    return user;
   },
 };
 
