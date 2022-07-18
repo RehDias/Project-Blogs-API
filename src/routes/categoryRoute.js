@@ -4,7 +4,6 @@ const authenticate = require('../middlewares/authenticate');
 
 const categoryRoute = Router();
 
-// categoryRoute.get('/:id', authenticate, categoryController.getById);
 categoryRoute.get('/', authenticate, categoryController.list);
 categoryRoute.post('/', authenticate, categoryController.add);
 

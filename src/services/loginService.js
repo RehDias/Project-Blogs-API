@@ -11,7 +11,7 @@ const loginService = {
   })),
 
   async checkUserByEmail({ email }) {
-    const user = await models.User.findOne({ where: { email } });
+    const user = await models.User.findOne({ where: { email }, raw: true });
     if (!user) throwError('ValidationError', 'Invalid fields');
     return user;
   },

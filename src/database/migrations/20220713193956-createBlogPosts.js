@@ -16,20 +16,27 @@ module.exports = {
 
       title: Sequelize.STRING,
 
-      content: Sequelize.STRING,
+      content: Sequelize.TEXT,
 
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Users',
           key: 'id'
         },
       },
 
-      published: Sequelize.DATE,
-      
-      updated: Sequelize.DATE,
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        field: 'published'
+      },
+
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        field: 'updated'
+      },
     });
   },
 

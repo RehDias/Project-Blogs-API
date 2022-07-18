@@ -10,25 +10,34 @@ const attr = {
 
   title: DataTypes.STRING,
 
-  content: DataTypes.STRING,
+  content: DataTypes.TEXT,
 
   userId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
     references: {
       model: 'Users',
       key: 'id'
     },
   },
 
-  published: DataTypes.DATE,
+  published: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
 
-  updated: DataTypes.DATE,
+  updated: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
 };
 
 /** @param {import('sequelize').Sequelize} sequelize */
 module.exports = (sequelize) => {
-  const BlogPost = sequelize.define('BlogPost', attr, { tableName: 'BlogPosts', timestamps: false });
+  const BlogPost = sequelize.define('BlogPost', attr, {
+    tableName: 'BlogPosts',
+    createdAt: 'published',
+    updatedAt: 'updated'
+  });
 
   BlogPost.associate = (models) => {
     BlogPost.belongsTo(models.User, { foreignKey: 'userId', as: 'Users' })

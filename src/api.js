@@ -4,6 +4,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const categoryRoute = require('./routes/categoryRoute');
 
 const loginRoute = require('./routes/loginRoute');
+const postRoute = require('./routes/postRoute');
 const userRoute = require('./routes/userRoute');
 // ...
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use('/categories', categoryRoute);
 app.use('/login', loginRoute);
+app.use('/post', postRoute);
 app.use('/user', userRoute);
 
 app.use(errorHandler);
