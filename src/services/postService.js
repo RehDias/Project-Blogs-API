@@ -96,6 +96,10 @@ const postService = {
     }, { where: { id } });
     return edited;
   },
+
+  async remove(id) {
+    await models.BlogPost.destroy({ where: { id } });
+  },
 };
 
 module.exports = postService;

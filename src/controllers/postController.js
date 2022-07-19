@@ -40,6 +40,15 @@ const postController = {
     const post = await postService.getById(...data);
     res.status(200).json(post);
   },
+
+  async remove(req, res) {
+    const { id } = await postService.validateParamsId(req.params);
+    await postService.checkPostExist(id);
+    await postService.checkUserPost(req.user.id, id);
+    await postService.remove(id);
+
+    res.sendStatus(204);
+  },
 };
 
 module.exports = postController;

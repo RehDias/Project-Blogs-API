@@ -12,7 +12,10 @@ const attr = {
 };
 
 module.exports = (sequelize) => {
-  const Category = sequelize.define('Category', attr, { tableName: 'Categories', timestamps: false });
+  const Category = sequelize.define('Category', attr, {
+    tableName: 'Categories',
+    timestamps: false,
+  });
 
   Category.associate = (models) => {
     Category.hasOne(models.PostCategory, { foreignKey: 'categoryId', as: 'PostCategories' });

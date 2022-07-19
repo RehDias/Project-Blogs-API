@@ -36,12 +36,12 @@ module.exports = (sequelize) => {
   const BlogPost = sequelize.define('BlogPost', attr, {
     tableName: 'BlogPosts',
     createdAt: 'published',
-    updatedAt: 'updated'
+    updatedAt: 'updated',
   });
 
   BlogPost.associate = (models) => {
-    BlogPost.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
-    BlogPost.hasMany(models.PostCategory, { foreignKey: 'postId', as: 'PostCategories' });
+    BlogPost.belongsTo(models.User, { foreignKey: 'userId', as: 'user', onDelete: 'CASCADE' });
+    BlogPost.hasMany(models.PostCategory, { foreignKey: 'postId', as: 'PostCategories', onDelete: 'CASCADE' });
   };
 
   return BlogPost;

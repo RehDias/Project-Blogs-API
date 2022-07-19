@@ -27,10 +27,13 @@ const attr = {
 
 /** @param {import('sequelize').Sequelize} sequelize */
 module.exports = (sequelize) => {
-  const User = sequelize.define('User', attr, { tableName: 'Users', timestamps: false });
+  const User = sequelize.define('User', attr, {
+    tableName: 'Users',
+    timestamps: false,
+  });
 
   User.associate = (models) => {
-    User.hasMany(models.BlogPost, { foreignKey: 'userId', as: 'Users' });
+    User.hasMany(models.BlogPost, { foreignKey: 'userId', as: 'user' });
   };
 
   return User;

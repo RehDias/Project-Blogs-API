@@ -24,7 +24,10 @@ const attr = {
 
 /** @param {import('sequelize').Sequelize} sequelize */
 module.exports = (sequelize) => {
-  const PostCategory = sequelize.define('PostCategory', attr, { tableName: 'PostCategories', timestamps: false });
+  const PostCategory = sequelize.define('PostCategory', attr, {
+    tableName: 'PostCategories',
+    timestamps: false,
+  });
 
   PostCategory.associate = (models) => {
     models.Category.belongsToMany(models.BlogPost, {
@@ -32,6 +35,7 @@ module.exports = (sequelize) => {
       through: PostCategory,
       foreignKey: 'postId',
       otherKey: 'categoryId',
+      onDelete: 'CASCADE'
     });
 
     models.BlogPost.belongsToMany(models.Category, {
@@ -39,6 +43,7 @@ module.exports = (sequelize) => {
       through: PostCategory,
       foreignKey: 'categoryId',
       otherKey: 'postId',
+      onDelete: 'CASCADE'
     });
   };
 
