@@ -33,6 +33,22 @@ const postService = {
     const post = await models.BlogPost.findByPk(id, { raw: true });
     return post;
   },
+
+  async list() {
+    const list = await models.BlogPost.findAll({
+      include: [{
+        model: models.User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      {
+        model: models.Category,
+        as: 'categories',
+        through: { attributes: [] },
+      }],
+    });
+    return list;
+  },
 };
 
 module.exports = postService;

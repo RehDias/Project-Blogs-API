@@ -18,6 +18,11 @@ const postController = {
       res.status(201).json(post);
     });
   },
+
+  async list(_req, res) {
+    const posts = await postService.list();
+    res.status(200).json(posts);
+  },
 };
 
 module.exports = postController;
