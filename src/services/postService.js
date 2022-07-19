@@ -11,6 +11,15 @@ const postService = {
     'string.empty': 'Some required fields are missing',
   })),
 
+  validateParamsId: validateJoiSchema(Joi.object({
+    id: Joi.number().integer().positive().required(),
+  })),
+
+  async checkPostExist(id) {
+    const exist = await models.BlogPost.findByPk(id);
+    if (!exist) throwError('NotFoundError', 'Post does not exist');
+  },
+
   async categoryExists(categoryIds) {
     const exist = await models.Category
       .findOne({ where: { id: categoryIds[0] } });
@@ -48,6 +57,22 @@ const postService = {
       }],
     });
     return list;
+  },
+
+  async getById(id) {
+    const post = await models.BlogPost.findByPk(id, {
+      include: [{
+        model: models.User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      {
+        model: models.Category,
+        as: 'categories',
+        through: { attributes: [] },
+      }],
+    });
+    return post;
   },
 };
 

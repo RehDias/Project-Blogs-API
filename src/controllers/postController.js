@@ -23,6 +23,13 @@ const postController = {
     const posts = await postService.list();
     res.status(200).json(posts);
   },
+
+  async getById(req, res) {
+    const { id } = await postService.validateParamsId(req.params);
+    await postService.checkPostExist(id);
+    const post = await postService.getById(id);
+    res.status(200).json(post);
+  },
 };
 
 module.exports = postController;
