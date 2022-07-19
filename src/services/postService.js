@@ -15,6 +15,20 @@ const postService = {
     id: Joi.number().integer().positive().required(),
   })),
 
+  validateEditBody: validateJoiSchema(Joi.object({
+    title: Joi.string().required(),
+    content: Joi.string().required(),
+  }).messages({
+    'string.empty': 'Some required fields are missing',
+  })),
+
+  async checkUserPost(userId, id) {
+    const userPost = await models.BlogPost.findOne({
+      where: { id, userId },
+    });
+    if (!userPost) throwError('Unauthorized', 'Unauthorized user');
+  },
+
   async checkPostExist(id) {
     const exist = await models.BlogPost.findByPk(id);
     if (!exist) throwError('NotFoundError', 'Post does not exist');
@@ -73,6 +87,14 @@ const postService = {
       }],
     });
     return post;
+  },
+
+  async edit(body, id) {
+    const edited = await models.BlogPost.update({
+      title: body.title,
+      content: body.content,
+    }, { where: { id } });
+    return edited;
   },
 };
 
