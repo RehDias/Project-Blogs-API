@@ -12,6 +12,7 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
+        onDelete: 'CASCADE'
       },
 
       displayName: {

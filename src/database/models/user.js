@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
   });
 
   User.associate = (models) => {
-    User.hasMany(models.BlogPost, { foreignKey: 'userId', as: 'user' });
+    User.hasMany(models.BlogPost, { foreignKey: 'userId', as: 'user', onDelete: 'CASCADE' });
   };
 
   return User;

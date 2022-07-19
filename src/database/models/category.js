@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
   });
 
   Category.associate = (models) => {
-    Category.hasOne(models.PostCategory, { foreignKey: 'categoryId', as: 'PostCategories' });
+    Category.hasOne(models.PostCategory, { foreignKey: 'categoryId', as: 'PostCategories', onDelete: 'CASCADE' });
   };
   return Category;
 };

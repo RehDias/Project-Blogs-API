@@ -39,6 +39,10 @@ const userService = {
     if (!user) throwError('NotFoundError', 'User does not exist');
     return user;
   },
+
+  async remove(id) {
+    await models.User.destroy({ where: { id } });
+  },
 };
 
 module.exports = userService;
