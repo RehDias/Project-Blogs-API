@@ -49,6 +49,13 @@ const postController = {
 
     res.sendStatus(204);
   },
+
+  async search(req, res) {
+    const title = await postService.search(req.query, 'title');
+    const content = await postService.search(req.query, 'content');
+    if (title.length !== 0) return res.status(200).json(title);
+    res.status(200).json(content);
+  },
 };
 
 module.exports = postController;

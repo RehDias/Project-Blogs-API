@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Joi = require('joi');
 const models = require('../database/models');
 const { validateJoiSchema, throwError } = require('./helpers');
@@ -99,6 +100,24 @@ const postService = {
 
   async remove(id) {
     await models.BlogPost.destroy({ where: { id } });
+  },
+
+  async search(q, column) {
+    const value = Object.values(q);
+    const post = await models.BlogPost.findAll({
+      where: { [`${column}`]: { [Op.substring]: value } },
+      include: [{
+        model: models.User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      {
+        model: models.Category,
+        as: 'categories',
+        through: { attributes: [] },
+      }],
+    });
+    return post;
   },
 };
 
