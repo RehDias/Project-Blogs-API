@@ -1,16 +1,17 @@
-# 🚧 README em construção 🚧
+<h1>Projeto Blogs API</h1>
 
-<!-- Olá, Tryber!
+<h2>Sobre</h2>
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+<p>Neste projeto foi desenvolvido uma API e um banco de dados para produção de conteúdo de um Blog, onde é possívell realizar um CRUD (criar, ler, atualizar e remover) nos endpoints /users, /login, /categories e /posts. É realizado uma verificação de token para a efetuar, atualizar, criar e remover postagens dependendo do usuário logado.</p>
 
-É essencial que você preencha esse documento por conta própria, ok?
+<h3>Tecnologias utilizadas</h3>
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+<p>Essa aplicação é em Node.js utilizando a ORM Sequelize para realizar os CRUDs de posts e MSC para a organização dos arquivos. Utiliza o Docker para rodar a aplicação</p>
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+<h3>Como executar o projeto</h3>
 
--->
+<p>Ao fazer o clone deste repositório na sua máquina, na pasta onde esta o projeto, é necessário a instalação do Docker e sequelizer</p>
+
+<h3>Aplicação</h3>
+
+![blog-Api](https://user-images.githubusercontent.com/91297277/181383429-9acef562-d5e0-42b9-b344-7e6f223fb6c9.gif)
