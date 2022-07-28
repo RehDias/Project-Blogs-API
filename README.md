@@ -8,10 +8,6 @@
 
 <p>Essa aplicação é em Node.js utilizando a ORM Sequelize para realizar os CRUDs de posts e MSC para a organização dos arquivos. Utiliza o Docker e a biblioteca Joi para validações.</p>
 
-<h3>Como executar o projeto</h3>
-
-<p>Ao fazer o clone deste repositório na sua máquina, na pasta onde esta o projeto, é necessário a instalação do Docker e sequelizer.</p>
-
 <h3>Aplicação</h3>
 
 ![blog-Api](https://user-images.githubusercontent.com/91297277/181383429-9acef562-d5e0-42b9-b344-7e6f223fb6c9.gif)
