@@ -6,7 +6,7 @@
 
 <h3>Tecnologias utilizadas</h3>
 
-<p>Essa aplicação é em Node.js utilizando a ORM Sequelize para realizar os CRUDs de posts e MSC para a organização dos arquivos. Utiliza o Docker para rodar a aplicação</p>
+<p>Essa aplicação é em Node.js utilizando a ORM Sequelize para realizar os CRUDs de posts e MSC para a organização dos arquivos. Utiliza o Docker e a biblioteca Joi para validações</p>
 
 <h3>Como executar o projeto</h3>
 
