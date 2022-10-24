@@ -2,7 +2,7 @@
 
 <h2>Sobre</h2>
 
-<p>Neste projeto foi desenvolvido uma API e um banco de dados para produção de conteúdo de um Blog, onde é possívell realizar um CRUD (criar, ler, atualizar e remover) nos endpoints /users, /login, /categories e /posts. É realizado uma verificação de token para a efetuar, atualizar, criar e remover postagens dependendo do usuário logado.</p>
+<p>Neste projeto foi desenvolvido uma API e um banco de dados para produção de conteúdo de um Blog, onde é possível realizar um CRUD (criar, ler, atualizar e remover) nos endpoints /users, /login, /categories e /posts. É realizado uma verificação de token para a efetuar, atualizar, criar e remover postagens dependendo do usuário logado.</p>
 
 <h3>Tecnologias utilizadas</h3>
 
